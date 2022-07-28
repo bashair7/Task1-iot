@@ -1,0 +1,146 @@
+<html>
+  
+  <head>
+	<link href="robot.css" rel="stylesheet" type="text/css">
+  <style>
+    textarea {
+      position: absolute;
+  width: 20%;
+  height: 60px;
+  top: 52%;
+  margin-top:-1%;
+  margin-left: 24%;
+  padding: 2px 10px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff3f3;
+  font-size: 18px;
+  resize: none;
+}
+  </style>
+  </head>
+  
+<body>
+
+  <!-- <h1 class="title">Robot</h1> -->
+
+ <div class="box"contenteditable>
+ <!-- <div class="boc">Robot</div>/* -->
+    <div class="oval">
+   <div class="head">
+   <div class="eye-left">
+     <div class="inner-eye-left"></div>
+     <div class="pupil-left"></div>
+   </div>
+   <div class="eye-right">
+     <div class="inner-eye-right"></div>
+     <div class="pupil-right"></div>
+   </div>
+</div>
+   
+   <div class="hair-left"></div>
+   <div class="hair-right"></div>
+   <div class="hair-top-left"></div>
+   <div class="hair-top-right"></div>
+   
+   <div class="mouth"></div>
+   
+   <div class="ear-bar-1"></div>
+   <div class="ear-bar-2"></div>
+   <div class="ear-bar-3"></div>
+   <div class="ear-left-circle"></div>
+   <div class="ear-right-circle"></div>
+
+   </div><!-- end of head -->
+   
+   <div class="neck"></div>
+   
+   <div class="upper-body">
+    <div class="boxs">
+     </div>
+   
+     <div class="bullet-1"></div>
+     <div class="bullet-2"></div>
+     <div class="bullet-3"></div>
+     <div class="bullet-4"></div>
+      <!-- <button id="start-btn" class="start-btn">START</button>
+      -->
+     
+     <div class="heart-left"></div>
+     <!-- <div class="textbox"> -->
+
+      <textarea id="textbox" rows="6"></textarea>
+     
+      <!-- </div>  -->
+     <div class="heart-right"></div>
+     <div class="heart-center"></div>
+    
+   </div>
+   
+   <div class="hand-left">
+     <div class="h-line-1"></div>
+     <div class="h-line-2"></div>
+     <div class="h-line-3"></div>
+     <div class="h-line-4"></div>
+     <div class="palm-left"></div>
+   </div>
+   <div class="hand-right">
+     <div class="h-line-1"></div>
+     <div class="h-line-2"></div>
+     <div class="h-line-3"></div>
+     <div class="h-line-4"></div>
+     <div class="palm-right"></div>
+   </div>
+   
+   <div class="leg-left">
+     <div class="line-1"></div>
+     <div class="line-2"></div>
+     <div class="line-3"></div>
+     <div class="shoe-left"></div>
+   </div>
+   <div class="leg-right">
+     <div class="line-1"></div>
+     <div class="line-2"></div>
+     <div class="line-3"></div>
+     <div class="shoe-right"></div>
+   </div>
+	</div>
+  <!-- <div class="words" >
+		<p id="p"></p>
+	</div> -->
+
+   <script>
+   var speech = true;
+   window.SpeechRecognition = window.SpeechRecognition
+           || window.webkitSpeechRecognition;
+   const recognition = new SpeechRecognition();
+   recognition.lang='ar';
+   recognition.interimResults = true;
+   const box = document.querySelector('.box');
+   box.appendChild(textbox);
+
+   recognition.addEventListener('result', e => {
+     const transcript = Array.from(e.results)
+       .map(result => result[0])
+       .map(result => result.transcript)
+       .join('')
+
+     document.getElementById("textbox").innerHTML = transcript;
+     console.log(transcript);
+   });
+   
+   if (speech == true) {
+     recognition.start();
+      recognition.addEventListener('end', recognition.start);
+     recognition.stop();
+
+   }
+ </script>
+
+ </div> <!-- End Invisible Box -->
+  
+  
+</body>
+
+</html>
